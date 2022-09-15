@@ -1,0 +1,67 @@
+﻿@model SBASAWAPP.FACTURA
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Factura</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Id Usuario")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDUSUARIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Fecha")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IVA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IVA)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Total")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TOTAL)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Numero de pago")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NUMPAGO)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Descuento")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCUENTO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IDFACTURA }) |
+    @Html.ActionLink("Volver a la lista", "Index")
+</p>

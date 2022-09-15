@@ -1,0 +1,72 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using SBASAWAPP.Models
+@model QuoteViewModel
+<h1 class="text-center pageTitle textColor p-2">Obtenga una recomendacion en los mejores productos para su hogar</h1>
+<div class="row justify-content-center text-center p-3">
+    <div class="col-6 justify-content-center">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TanqueModal">
+            Busco Tanque de almacenamiento
+        </button>
+    </div>
+    <div class="col-6 justify-content-center">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#BombaModal">
+            Busco Bomba de Agua
+        </button>
+    </div>
+</div>
+
+<div class="modal fade" id="TanqueModal" tabindex="-1" aria-labelledby="TanqueModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container text-center navTitles">
+                    <div class="dropdown row">
+                        <p class="form-label col-6">Por favor elija la cantidad de personas que residen en su casa</p>
+                        <button class="btn btn-primary dropdown-toggle col-6 h-50 m-auto" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Personas
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="https://bombasarcor.co.cr/Files/2.pdf">2</a></li>
+                            <li><a class="dropdown-item" href="https://bombasarcor.co.cr/Files/2.pdf">3</a></li>
+                            <li><a class="dropdown-item" href="https://bombasarcor.co.cr/Files/2.pdf">4</a></li>
+                            <li><a class="dropdown-item" href="https://bombasarcor.co.cr/Files/2.pdf">7</a></li>
+                            <li><a class="dropdown-item" href="https://bombasarcor.co.cr/Files/2.pdf">8</a></li>
+                            <li><a class="dropdown-item" href="https://bombasarcor.co.cr/Files/2.pdf">10</a></li>
+                            <li><a class="dropdown-item" href="https://bombasarcor.co.cr/Files/2.pdf">20</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="BombaModal" tabindex="-1" aria-labelledby="BombaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container text-center navTitles">
+                    @using (Html.BeginForm("Bomba", "AutoQuote", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        <div class="row">
+                            <p class="form-label col-6">Por favor seleccione la cantidad de plantas de su hogar</p>
+                            @Html.DropDownListFor(m => m.Pisos, (IEnumerable<SelectListItem>)ViewBag.Stories, new { @class = "btn btn-primary h-50 col-6" })
+                        </div>
+                        <div class="row">
+                            <p class="form-label col-6">Por favor seleccione la cantidad de baños de su hogar</p>
+                            @Html.DropDownListFor(m => m.Baths, (IEnumerable<SelectListItem>)ViewBag.Baths, new { @class = "btn btn-primary h-50 col-6" })
+                        </div>
+                        <input type="submit" value="Aceptar" class="btn btn-primary" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<h2 class="text-center pageTitle p-4">O bien dejenos un mensaje y pronto nos contactaremos con usted</h2>
+@Html.Partial("_CONTACT", new CONTACTO())
+
+
+

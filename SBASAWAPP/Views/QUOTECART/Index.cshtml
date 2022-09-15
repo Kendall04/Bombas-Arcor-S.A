@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SBASAWAPP.QUOTECART>
+@using Microsoft.AspNet.Identity;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Cantidad")
+        </th>
+        <th>
+            @Html.DisplayName("Producto")
+        </th>
+        <th>
+            @Html.DisplayName("Resultado")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.ID_USER.Equals(User.Identity.GetUserId()))
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.QUANTITY)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PRODUCT.NAME)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RESULTADO)
+    </td>
+    <td>
+        @Html.ActionLink("Detalles", "Details", new { id = item.ID }) |
+        @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
+    </td>
+</tr>
+        }
+    }
+
+</table>

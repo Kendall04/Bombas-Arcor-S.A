@@ -1,0 +1,39 @@
+﻿@using SBASAWAPP.Models
+@model IEnumerable<SBASAWAPP.PRODUCT>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (User.IsInRole("ADMIN"))
+{
+    <p>
+        @Html.ActionLink("Crear nuevo", "Create")
+    </p>
+}
+@Html.Partial("_CATEGORIE", new ProductViewModel())
+<div class="row row row-cols-1 row-cols-md-3 card-columns justify-content-between" style="padding-top:2em;">
+    @foreach (var item in Model)
+    {
+        if (item.ACTIVE == true)
+        {
+            <div class="col p-2">
+                <div class="card text-center shadow-lg p-3 mb-5 card-products">
+                    <img src="@item.URL" class="card-img-top p-2" alt="Alternate Text" />
+                    <div class="card-body">
+                        <div class="card-title text-center" style="color:#094067; font-family: 'Open Sans', sans-serif;">
+                            <p>@item.NAME</p>
+                        </div>
+                        <p>@item.DESCRIPTION</p>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a href="@Url.Action("Create", "QUOTECART", new { id = item.ID })" class="btn btn-primary">Añadir al carrito</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+</div>

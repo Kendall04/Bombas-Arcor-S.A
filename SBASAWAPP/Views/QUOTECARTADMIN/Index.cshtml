@@ -1,0 +1,60 @@
+﻿@model IEnumerable<SBASAWAPP.QUOTECART>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Cantidad")
+        </th>
+        <th>
+            @Html.DisplayName("Resultado")
+        </th>
+        <th>
+            @Html.DisplayName("Activo")
+        </th>
+        <th>
+            @Html.DisplayName("Correo electrónico")
+        </th>
+        <th>
+            @Html.DisplayName("Producto")
+        </th>
+
+        <th>
+            @Html.DisplayName("Fecha")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.QUANTITY)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RESULTADO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ACTIVO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRODUCT.NAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHA)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

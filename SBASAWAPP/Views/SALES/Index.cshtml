@@ -1,0 +1,58 @@
+﻿@model IEnumerable<SBASAWAPP.SALE>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Crear nuevo", "Create")
+</p>
+<section id="main">
+    <div class="inner">
+
+        <section id="one" class="wrapper style1">
+            <header class="special">
+                <h2>Informacion de Ventas</h2>
+            </header>
+            <div class="content">
+                <a href="https://bombasarcor.co.cr/Files/SALES.xlsx" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                    <i class="fas fa-download fa-sm text-white-50"></i> Generar Reporte
+                </a>
+                @*<a class="btn btn-outline-primary" href="@Url.Action("Excel", "SALES")"> Exportar</a>*@
+                <table id="MiTabla" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayName("Nombre de cliente")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Total")
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CLIENT_NAME)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SALE_TOTAL)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
+                                    @Html.ActionLink("Detalles", "Details", new { id = item.ID }) |
+                                    @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </section>
+    </div>
+</section>
